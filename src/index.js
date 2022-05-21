@@ -4,14 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Question1 from './pages/Question1'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />}>
-        </Route>
+        <Route path='/' element={<App />} />
+        <Route path='/q1' element={<Question1 />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
