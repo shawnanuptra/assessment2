@@ -6,10 +6,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        bubbles: "url('./vectors/bubbles.svg')",
+        primaryGradient: "linear-gradient(to right, #FF1F1F, #FB7722);",
+        reverseGradient: "linear-gradient(to right, #FB7722, #FF1F1F);",
+      },
       colors: {
         accentOrange: '#FB7722',
         primaryRed: '#FF1F1F',
-        // secondary: '#5865f2',
+        gray: {
+          500: '#C4C4C4'
+        },
         // gray: colors.neutral,
         // gray: {
         //   900: '#202225',
