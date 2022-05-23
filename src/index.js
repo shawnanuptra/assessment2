@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Question1 from './pages/Question1'
 import Question2 from './pages/Question2';
 import Question3 from './pages/Question3'
+import ErrorScreen from './pages/ErrorScreen';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Route path='/q1' element={<Question1 />} />
         <Route path='/q2' element={<Question2 />} />
         <Route path='/q3' element={<Question3 />} />
+        <Route path='/error' element={<ErrorScreen />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

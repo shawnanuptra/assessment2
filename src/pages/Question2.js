@@ -36,6 +36,7 @@ export default function Question2() {
                             <Link to='/q1'>
                                 <BackArrowButton />
                             </Link>
+                            {/* TODO: change LINK to upload to Firebase & Link to ErrorScreen.js if error occured */}
                             <Link to='/q3'>
 
                                 <NextArrowButton />
