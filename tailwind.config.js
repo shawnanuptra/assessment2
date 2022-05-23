@@ -1,4 +1,4 @@
-// const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
@@ -17,19 +17,22 @@ module.exports = {
         gray: {
           500: '#C4C4C4'
         },
-        // gray: colors.neutral,
-        // gray: {
-        //   900: '#202225',
-        //   800: '#2f3136',
-        //   700: '#36393f',
-        //   600: '#4f545c',
-        //   400: '#d4d7dc',
-        //   300: '#e3e5e8',
-        //   200: '#ebedef',
-        //   100: '#f2f3f5',
-        // }
+        yellowBorder: '#FFBA08',
+        yellowText: '#EFAC00',
+        greenBorder: '#4C9900'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar::-webkit-scrollbar': {
+          'display': 'none',
+        },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'hidden',
+          'scrollbar-width': 'hidden',
+        }
+      })
+    })],
 }

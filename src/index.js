@@ -8,9 +8,13 @@ import Question1 from './pages/Question1'
 import Question2 from './pages/Question2';
 import Question3 from './pages/Question3'
 import ErrorScreen from './pages/ErrorScreen';
+import CouncilHome from './pages/CouncilHome';
+import InProgress from './pages/InProgress';
+import Archive from './pages/Archive';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  // todo: create a ContextProvider to share auth states
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -19,6 +23,9 @@ root.render(
         <Route path='/q2' element={<Question2 />} />
         <Route path='/q3' element={<Question3 />} />
         <Route path='/error' element={<ErrorScreen />} />
+        <Route path='/home' element={<CouncilHome />} />
+        <Route path='/in-progress' element={<InProgress />} />
+        <Route path='/archive' element={<Archive />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
