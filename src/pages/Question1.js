@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import DamageType from '../components/DamageType'
 import NextArrowButton from '../components/NextArrowButton'
 import QuestionsBar from '../components/QuestionsBar'
@@ -29,7 +30,9 @@ export default function Question1() {
                         <textarea className='w-full bg flex flex-grow resize-none border-[1px] border-accentOrange rounded-2xl p-3  focus:outline-accentOrange' placeholder='Type here...'>
 
                         </textarea>
-                        <NextArrowButton />
+                        <Link to='/q2'>
+                            <NextArrowButton />
+                        </Link>
                     </form>
                 </div>
             </div>
