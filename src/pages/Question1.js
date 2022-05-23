@@ -12,7 +12,7 @@ export default function Question1() {
             <div className='w-screen h-screen p-12 flex flex-col z-10'>
                 <QuestionsBar question={1} />
                 <div className='flex rounded-2xl flex-grow relative p-4 shadow-lg  bg-white bg-opacity-60 backdrop-blur-3xl'>
-                    <form className='flex flex-col'>
+                    <form className='w-full flex flex-col'>
                         <div>
                             <h2 className='text-2xl font-bold mb-6'>What type of damage was it?</h2>
                             <div className='grid grid-cols-2 gap-2.5 place-items-center mb-8'>

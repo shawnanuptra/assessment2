@@ -22,6 +22,29 @@ module.exports = {
         greenBorder: '#4C9900'
       }
     },
+    keyframes: {
+      popup: {
+        '0%': { transform: 'translateY(100%)' },
+        '100%': { transform: 'translateY(0)' },
+      },
+      popdown: {
+        '0%': { transform: 'translateY(0)' },
+        '100%': { transform: 'translateY(100%)' },
+      },
+      fadeIn: {
+        '0%': {
+          opacity: 0
+        },
+        '100%': {
+          opacity: 1
+        }
+      }
+    },
+    animation: {
+      'fading-in': 'fadeIn 0.5s ease-in',
+      'popping-up': 'popup 0.5s ease-in',
+      'popping-down': 'popdown 0.5s ease-in'
+    }
   },
   plugins: [
     plugin(function ({ addUtilities }) {

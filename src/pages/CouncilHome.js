@@ -3,7 +3,6 @@ import { auth } from '../Firebase'
 import { useNavigate } from 'react-router-dom';
 import CouncilTitle from '../components/CouncilTitle';
 import BotNavBar from '../components/BotNavBar';
-import PendingIcon from '../vectors/pending.svg'
 import ReportCard from '../components/ReportCard';
 
 export default function CouncilHome() {
@@ -20,8 +19,8 @@ export default function CouncilHome() {
 
 
     return (
-        <div className='w-screen h-screen px-12 flex flex-col z-10 py-4'>
-            <div className='flex flex-grow flex-col justify-between h-full'>
+        <div className='w-screen h-screen px-12 flex flex-col z-10 py-4 no-scrollbar'>
+            <div className='flex flex-grow flex-col justify-between h-full no-scrollbar'>
                 {/* Title */}
                 <CouncilTitle text='New' />
 

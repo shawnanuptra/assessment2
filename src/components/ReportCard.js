@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PendingIcon from '../vectors/pending.svg'
 import ApprovedIcon from '../vectors/approved.svg'
 import MantainingIcon from '../vectors/mantaining.svg'
 import FixedIcon from '../vectors/fixed.svg'
+import DetailsModal from './DetailsModal'
 export default function ReportCard(props) {
 
     let appliedStyle = {};
@@ -49,25 +50,36 @@ export default function ReportCard(props) {
             break;
     }
 
+
+    const [showModal, setShowModal] = useState(false);
+
+    function openModal() {
+        setShowModal(true);
+    }
+
+
     return (
-        <div className={'h-max w-full border-[1px] rounded-xl p-4 flex flx-col justify-between shadow-black drop-shadow-lg mb-4 ' + appliedStyle.cardStyle}>
-            <div className='w-3/4 mr-2'>
-                <h1 className='font-bold text-lg mb-1'>Graffitti</h1>
-                <div>
-                    <span className='text-base font-semibold'>Last update: </span>
-                    <span>09 Sept '22</span>
+        <>
+            <div onClick={openModal} className={'cursor-pointer h-max w-full border-[1px] rounded-xl p-4 flex flx-col justify-between shadow-black drop-shadow-lg mb-4 ' + appliedStyle.cardStyle}>
+                <div className='w-3/4 mr-2'>
+                    <h1 className='font-bold text-lg mb-1'>Graffitti</h1>
+                    <div>
+                        <span className='text-base font-semibold'>Last update: </span>
+                        <span>09 Sept '22</span>
+                    </div>
+                    <div className='truncate'>
+                        <span className='text-base font-semibold'>Location: </span>
+                        <span className='truncate'>SR6 78D, 24 Brandling..</span>
+                    </div>
                 </div>
-                <div className='truncate'>
-                    <span className='text-base font-semibold'>Location: </span>
-                    <span className='truncate'>SR6 78D, 24 Brandling..</span>
+                <div className='flex flex-col justify-center flex-grow items-center'>
+                    <div className='flex flex-col justify-center items-center'>
+                        <img src={appliedStyle.img} />
+                        <span className={'text-xs ' + appliedStyle.textStyle}>{appliedStyle.text}</span>
+                    </div>
                 </div>
             </div>
-            <div className='flex flex-col justify-center flex-grow items-center'>
-                <div className='flex flex-col justify-center items-center'>
-                    <img src={appliedStyle.img} />
-                    <span className={'text-xs ' + appliedStyle.textStyle}>{appliedStyle.text}</span>
-                </div>
-            </div>
-        </div>
+            {showModal ? <DetailsModal setShowModal={setShowModal} /> : null}
+        </>
     )
 }
