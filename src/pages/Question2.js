@@ -48,6 +48,7 @@ export default function Question2() {
             //update data into firebase
             try {
                 await uploadFormData();
+                formContext.clearForm();
                 nav('/q3')
 
             } catch (e) {

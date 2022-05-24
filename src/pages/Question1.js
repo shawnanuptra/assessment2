@@ -4,7 +4,7 @@ import DamageType from '../components/DamageType'
 import NextArrowButton from '../components/NextArrowButton'
 import QuestionsBar from '../components/QuestionsBar'
 import { FormContext, useFormContext } from '../FormContext'
-
+import BackArrowButton from '../components/BackArrowButton'
 export default function Question1() {
 
     const formContext = useFormContext();
@@ -39,9 +39,15 @@ export default function Question1() {
                             }}>
 
                         </textarea>
-                        <Link to='/q2'>
-                            <NextArrowButton />
-                        </Link>
+                        <div className='flex justify-between'>
+                            <Link to='/'>
+                                <BackArrowButton />
+                            </Link>
+
+                            <Link to='/q2'>
+                                <NextArrowButton />
+                            </Link>
+                        </div>
                     </form>
                 </div>
             </div>

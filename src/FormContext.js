@@ -34,8 +34,12 @@ export function FormContextProvider({ children }) {
         setFormState(prevFormState => ({ ...prevFormState, ...obj }));
     }
 
+    function clearForm() {
+        setFormState(formData);
+    }
+
     return (
-        <FormContext.Provider value={{ formState, updateForm }}>
+        <FormContext.Provider value={{ formState, updateForm, clearForm }}>
             {children}
         </FormContext.Provider>
     )
