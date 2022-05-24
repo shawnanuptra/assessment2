@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { getFirestore } from "firebase/firestore";
 
 //TODO: make this secret?
 const firebaseConfig = {
@@ -14,7 +15,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+export const db = getFirestore(app);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
@@ -39,8 +40,4 @@ export async function signInWithGoogle(auth, provider) {
             const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
         });
-
-
-
 }
-

@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { collection, addDoc, Timestamp } from 'firebase/firestore'
+import { db } from './Firebase'
 
 const formData = {
     'type': '',

@@ -1,15 +1,65 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigator, useNavigate } from 'react-router-dom'
 import BackArrowButton from '../components/BackArrowButton'
-import DamageType from '../components/DamageType'
 import NextArrowButton from '../components/NextArrowButton'
 import QuestionsBar from '../components/QuestionsBar'
-import { useFormContext } from '../FormContext'
-import Bubbles from '../vectors/bubbles.svg'
+import { uploadFormData, useFormContext } from '../FormContext'
+import { collection, addDoc, Timestamp } from 'firebase/firestore'
+import { db } from '../Firebase'
+
 export default function Question2() {
 
     const formContext = useFormContext();
     const locationObj = formContext.formState.location;
+    const nav = useNavigate()//for redirecting after uploading to Firestore
+
+    async function uploadFormData() {
+        //complete all the fields of the formState
+        //add default values of date_submitted, date_updated, and status
+        const currentTimeStamp = Timestamp.fromDate(new Date())
+        const defaultFields = {
+            'status': 'pending',
+            'date_submitted': currentTimeStamp,
+            'date_updated': currentTimeStamp
+        }
+
+        const completeForm = {
+            ...formContext.formState,
+            ...defaultFields
+        }
+
+        console.log(formContext.formState)
+        console.log(completeForm)
+
+        //update data into firebase
+        try {
+            const docRef = await addDoc(collection(db, 'records'), completeForm);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e)
+        }
+
+
+    }
+    async function handleSubmit() {
+
+        //check if you are online or not
+        if (navigator.onLine) {
+            //update data into firebase
+            try {
+                await uploadFormData();
+                nav('/q3')
+
+            } catch (e) {
+                //go to error screen if there are any errors
+                console.error(e);
+                nav('/error')
+            }
+        } else {
+            //go to error screen if offline
+            nav('/error')
+        }
+    }
 
     return (
         <>
@@ -42,12 +92,11 @@ export default function Question2() {
                                 }}
                             />
                         </div>
-
                         <h2 className='text-xl font-bold mb-6'>Additional information</h2>
                         <textarea className='w-full bg flex flex-grow resize-none border-[1px] border-accentOrange rounded-2xl p-3  focus:outline-accentOrange' placeholder='e.g. behind the red telephone box'
-                            defaultValue={locationObj.additional_information}
+                            defaultValue={locationObj.additional_info}
                             onChange={(e) => {
-                                formContext.updateForm({ "location": { ...locationObj, "additional_information": e.target.value } })
+                                formContext.updateForm({ "location": { ...locationObj, "additional_info": e.target.value } })
                             }}
                         >
 
@@ -56,11 +105,10 @@ export default function Question2() {
                             <Link to='/q1'>
                                 <BackArrowButton />
                             </Link>
-                            {/* //TODO: change LINK to upload to Firebase & Link to ErrorScreen.js if error occured */}
-                            <Link to='/q3'>
 
+                            <div onClick={handleSubmit}>
                                 <NextArrowButton />
-                            </Link>
+                            </div>
                         </div>
                     </form>
                 </div>
