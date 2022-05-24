@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -11,22 +11,25 @@ import ErrorScreen from './pages/ErrorScreen';
 import CouncilHome from './pages/CouncilHome';
 import InProgress from './pages/InProgress';
 import Archive from './pages/Archive';
+import { FormContextProvider } from './FormContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // todo: create a ContextProvider to share auth states
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/q1' element={<Question1 />} />
-        <Route path='/q2' element={<Question2 />} />
-        <Route path='/q3' element={<Question3 />} />
-        <Route path='/error' element={<ErrorScreen />} />
-        <Route path='/home' element={<CouncilHome />} />
-        <Route path='/in-progress' element={<InProgress />} />
-        <Route path='/archive' element={<Archive />} />
-      </Routes>
+      <FormContextProvider>
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='/q1' element={<Question1 />} />
+          <Route path='/q2' element={<Question2 />} />
+          <Route path='/q3' element={<Question3 />} />
+          <Route path='/error' element={<ErrorScreen />} />
+          <Route path='/home' element={<CouncilHome />} />
+          <Route path='/in-progress' element={<InProgress />} />
+          <Route path='/archive' element={<Archive />} />
+        </Routes>
+      </FormContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
@@ -34,4 +37,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();

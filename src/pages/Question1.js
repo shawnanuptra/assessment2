@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import DamageType from '../components/DamageType'
 import NextArrowButton from '../components/NextArrowButton'
 import QuestionsBar from '../components/QuestionsBar'
-import Bubbles from '../vectors/bubbles.svg'
+import { FormContext, useFormContext } from '../FormContext'
+
 export default function Question1() {
+
+    const formContext = useFormContext();
+    useEffect(() => console.log(formContext.formState), [formContext])
+
     return (
         <>
             <div className='absolute z-0 w-screen h-screen bg-bubbles bg-cover'>
@@ -26,8 +31,12 @@ export default function Question1() {
                             </div>
                         </div>
 
-                        <h2 className='text-2xl font-bold mb-6'>Please describe</h2>
-                        <textarea className='w-full bg flex flex-grow resize-none border-[1px] border-accentOrange rounded-2xl p-3  focus:outline-accentOrange' placeholder='Type here...'>
+                        <h2 className='text-xl font-bold mb-6'>Please describe</h2>
+                        <textarea className='w-full bg flex flex-grow resize-none border-[1px] border-accentOrange rounded-2xl p-3  focus:outline-accentOrange' placeholder='Type here...'
+                            value={formContext.formState.type_desc}
+                            onChange={(e) => {
+                                formContext.updateForm({ "type_desc": e.target.value })
+                            }}>
 
                         </textarea>
                         <Link to='/q2'>

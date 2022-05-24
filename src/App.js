@@ -3,8 +3,13 @@ import MainButton from './components/MainButton';
 import Hero from './vectors/hero.svg';
 import { GoogleAuthProvider } from 'firebase/auth'
 import { auth, signInWithGoogle } from './Firebase'
-function App() {
+import { useFormContext } from './FormContext';
 
+
+
+function App(props) {
+
+  //for Google sign-ins
   const provider = new GoogleAuthProvider();
   const nav = useNavigate();
 
