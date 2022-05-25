@@ -4,7 +4,11 @@ import ApprovedIcon from '../vectors/approved.svg'
 import MantainingIcon from '../vectors/mantaining.svg'
 import FixedIcon from '../vectors/fixed.svg'
 import DetailsModal from './DetailsModal'
-export default function ReportCard(props) {
+import { Timestamp } from 'firebase/firestore'
+
+export default function ReportCard({ data, reload }) {
+
+    const { status, type, type_desc, location, date_updated, date_submitted, date_approved } = data;
 
     let appliedStyle = {};
 
@@ -33,7 +37,7 @@ export default function ReportCard(props) {
         text: 'fixed'
     };
 
-    switch (props.status) {
+    switch (status) {
         case 'pending':
             appliedStyle = { ...pendingStyle };
             break;
@@ -57,19 +61,20 @@ export default function ReportCard(props) {
         setShowModal(true);
     }
 
+    console.log(data.date_submitted)
 
     return (
         <>
-            <div onClick={openModal} className={'cursor-pointer h-max w-full border-[1px] rounded-xl p-4 flex flx-col justify-between shadow-black drop-shadow-lg mb-4 ' + appliedStyle.cardStyle}>
+            <div onClick={openModal} className={'cursor-pointer h-max w-11/12 border-[1px] rounded-xl p-4 flex flx-col justify-between shadow-black drop-shadow-lg mb-4 ' + appliedStyle.cardStyle}>
                 <div className='w-3/4 mr-2'>
-                    <h1 className='font-bold text-lg mb-1'>Graffitti</h1>
+                    <h1 className='font-bold text-lg mb-1'>{type}</h1>
                     <div>
                         <span className='text-base font-semibold'>Last update: </span>
-                        <span>09 Sept '22</span>
+                        <span>{date_updated.toDate().toDateString()}</span>
                     </div>
                     <div className='truncate'>
                         <span className='text-base font-semibold'>Location: </span>
-                        <span className='truncate'>SR6 78D, 24 Brandling..</span>
+                        <span className='truncate'>{`${location.postcode},  ${location.postcode}, ${location.postcode}`}</span>
                     </div>
                 </div>
                 <div className='flex flex-col justify-center flex-grow items-center'>
@@ -79,7 +84,7 @@ export default function ReportCard(props) {
                     </div>
                 </div>
             </div>
-            {showModal ? <DetailsModal setShowModal={setShowModal} /> : null}
+            {showModal ? <DetailsModal setShowModal={setShowModal} data={data} reload={reload} /> : null}
         </>
     )
 }

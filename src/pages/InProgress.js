@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth } from '../Firebase'
 import { useNavigate } from 'react-router-dom';
 import CouncilTitle from '../components/CouncilTitle';
 import BotNavBar from '../components/BotNavBar';
 import ReportCard from '../components/ReportCard';
+
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../Firebase';
+import { reload } from 'firebase/auth';
 
 export default function CouncilHome() {
 
@@ -17,6 +21,32 @@ export default function CouncilHome() {
         }
     }, [auth])
 
+    const [output, setOutput] = useState([]);
+
+    function reload() {
+        async function LoadCards() {
+            const q = query(collection(db, "records"), where("status", "==", 'mantaining'));
+            const q2 = query(collection(db, "records"), where("status", "==", 'approved'));
+
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                setOutput(prevOutput => [...prevOutput, { 'id': doc.id, ...doc.data() }])
+                console.log(doc.id, " => ", doc.data());
+            });
+
+            const querySnapshot2 = await getDocs(q2);
+            querySnapshot2.forEach((doc) => {
+                setOutput(prevOutput => [...prevOutput, { 'id': doc.id, ...doc.data() }])
+                console.log(doc.id, " => ", doc.data());
+            });
+        }
+        //repopulate after every refresh
+        setOutput([]);
+        LoadCards();
+    }
+    useEffect(() => {
+        reload();
+    }, []);
 
     return (
         <div className='w-screen h-screen px-12 flex flex-col z-10 py-4'>
@@ -26,14 +56,12 @@ export default function CouncilHome() {
 
                 {/* Main section */}
                 <div className='no-scrollbar overflow-auto flex flex-col flex-grow my-4 h-full'>
-                    {/* TODO: FutureBuilder based on Firebase data that is streamed */}
-                    <ReportCard status='approved' />
-                    <ReportCard status='approved' />
-                    <ReportCard status='mantaining' />
-                    <ReportCard status='approved' />
-                    <ReportCard status='approved' />
-                    <ReportCard status='mantaining' />
-                    <ReportCard status='mantaining' />
+                    {output.length > 0 ? output.map(
+                        el => {
+                            console.log(el, 'rendering');
+                            return <ReportCard data={el} key={el.id} reload={reload} />
+                        }
+                    ) : <div className='font-xl text-gray-400 flex flex-col flex-grow justify-center items-center'>No in progress reports</div>}
                 </div>
 
                 {/* Bottom NavBar */}

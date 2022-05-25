@@ -16,22 +16,22 @@ import { FormContextProvider } from './FormContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // todo: create a ContextProvider to share auth states
-  <React.StrictMode>
-    <BrowserRouter>
-      <FormContextProvider>
-        <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/q1' element={<Question1 />} />
-          <Route path='/q2' element={<Question2 />} />
-          <Route path='/q3' element={<Question3 />} />
-          <Route path='/error' element={<ErrorScreen />} />
-          <Route path='/home' element={<CouncilHome />} />
-          <Route path='/in-progress' element={<InProgress />} />
-          <Route path='/archive' element={<Archive />} />
-        </Routes>
-      </FormContextProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+
+  <BrowserRouter>
+    <FormContextProvider>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='/q1' element={<Question1 />} />
+        <Route path='/q2' element={<Question2 />} />
+        <Route path='/q3' element={<Question3 />} />
+        <Route path='/error' element={<ErrorScreen />} />
+        <Route path='/home' element={<CouncilHome />} />
+        <Route path='/in-progress' element={<InProgress />} />
+        <Route path='/archive' element={<Archive />} />
+      </Routes>
+    </FormContextProvider>
+  </BrowserRouter>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
