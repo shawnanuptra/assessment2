@@ -8,6 +8,28 @@ export default function DetailsSubtitleDropdown(props) {
     }
 
     console.log(props.info)
+
+
+    let pendDisable = false, apprDisable = false, manDisable = false, disableAll = false;
+
+    switch (props.info) {
+        case 'approved':
+            pendDisable = true;
+            break;
+
+        case 'mantaining':
+            pendDisable = true, apprDisable = true;
+            break;
+
+        case 'fixed':
+            disableAll = true;
+            break;
+
+        //if 'pending',
+        default:
+            break;
+    }
+
     return (
         <div className='mb-6'>
             <DetailsSubtitle text={props.text} />
@@ -15,11 +37,12 @@ export default function DetailsSubtitleDropdown(props) {
             <select
                 className='bg-transparent text-xl focus:outline-accentOrange cursor-pointer'
                 defaultValue={props.info}
+                disabled={disableAll}
                 onChange={handleOnChange}
             >
-                <option value={'pending'}>Pending</option>
-                <option value={'approved'}>Approved</option>
-                <option value={'mantaining'}>Mantaining</option>
+                <option value={'pending'} disabled={pendDisable}>Pending</option>
+                <option value={'approved'} disabled={apprDisable}>Approved</option>
+                <option value={'mantaining'} disabled={manDisable}>Mantaining</option>
                 <option value={'fixed'}>Fixed</option>
             </select>
         </div>
