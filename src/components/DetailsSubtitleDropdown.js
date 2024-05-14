@@ -5,9 +5,9 @@ export default function DetailsSubtitleDropdown(props) {
 
     function handleOnChange(e) {
         props.func(e.target.value);
+        console.log(props.info)
     }
 
-    console.log(props.info)
 
 
     let pendDisable = false, apprDisable = false, manDisable = false, disableAll = false;
