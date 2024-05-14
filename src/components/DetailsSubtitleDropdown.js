@@ -18,7 +18,7 @@ export default function DetailsSubtitleDropdown(props) {
             break;
 
         case 'mantaining':
-            pendDisable = true, apprDisable = true;
+            pendDisable = true; apprDisable = true;
             break;
 
         case 'fixed':
