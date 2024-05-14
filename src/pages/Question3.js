@@ -9,10 +9,10 @@ import Hero from '../vectors/report-submitted.svg'
 export default function Question3() {
     return (
 
-        <div className='w-screen h-screen p-12 flex flex-col z-10'>
+        <div className='w-screen h-screen p-12 flex flex-col z-10 max-w-lg my-0 mx-auto'>
             <QuestionsBar question={3} />
             <div className='flex rounded-2xl flex-grow p-4 shadow-lg  bg-white border-[3px] border-accentOrange justify-center items-center flex-col '>
-                <img src={Hero} className='w-11/12' />
+                <img src={Hero} className='w-11/12 max-w-lg' />
                 <div className='text-center my-10'>
                     <h1 className='font-bold text-3xl'>Report submitted!</h1>
                     <p className='text-base '>Thank you for your contribution.</p>

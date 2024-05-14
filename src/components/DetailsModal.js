@@ -102,23 +102,27 @@ export default function DetailsModal({ setShowModal, data, reload }) {
     return (
         <>
             <div className="no-scrollbar overflow-scroll absolute top-0 left-0 w-screen h-screen z-30 bg-white bg-opacity-60 backdrop-blur-md px-12 flex flex-col py-4" ref={modalRef}>
-                <div className='no-scrollbar flex flex-row justify-between mb-6'>
-                    <DetailsTitle />
-                    <img className='h-[30px] cursor-pointer hover:scale-110 transition-transform' src={CloseButton} onClick={handleClick} />
-                </div>
-                <DetailsSubtitleInfo text='Type' info={type[0].toUpperCase() + type.substring(1)} addInfo={type_desc} />
-                <DetailsSubtitleInfo text='Location' info={location.postcode} addInfo={`${location.street}` + `${location.additional_info}`} />
-                <DetailsSubtitleDropdown text='Status' info={status} func={setDropdownValue} />
-                <DetailsSubtitleInfo text='Last Updated' info={date_updated.toDate().toDateString()} />
-                <DetailsSubtitleInfo text='Date Submitted' info={date_submitted.toDate().toDateString()} />
-                <DetailsSubtitleInfo text='Date Approved' info={date_approved != '' ? date_approved.toDate().toDateString() : 'N/A'} />
-                <DetailsSubtitleInfo text='Date Fixed' info={status === 'fixed' ? `${date_updated.toDate().toDateString()}` : 'N/A'} />
+                <div className='w-full max-w-xl my-0 mx-auto'>
 
-                <div className='my-12 grid gap-4 place-items-center' >
-                    <MainButton onClick={toggleConfirmationOverlay} text='UPDATE' />
-                    <SecondaryButton text='CANCEL' onClick={() => setShowModal(false)} />
+                    <div className='no-scrollbar flex flex-row justify-between mb-6'>
+                        <DetailsTitle />
+                        <img className='h-[30px] cursor-pointer hover:scale-110 transition-transform' src={CloseButton} onClick={handleClick} />
+                    </div>
+                    <DetailsSubtitleInfo text='Type' info={type[0].toUpperCase() + type.substring(1)} addInfo={type_desc} />
+                    <DetailsSubtitleInfo text='Location' info={location.postcode} addInfo={`${location.street}` + `${location.additional_info}`} />
+                    <DetailsSubtitleDropdown text='Status' info={status} func={setDropdownValue} />
+                    <DetailsSubtitleInfo text='Last Updated' info={date_updated.toDate().toDateString()} />
+                    <DetailsSubtitleInfo text='Date Submitted' info={date_submitted.toDate().toDateString()} />
+                    <DetailsSubtitleInfo text='Date Approved' info={date_approved != '' ? date_approved.toDate().toDateString() : 'N/A'} />
+                    <DetailsSubtitleInfo text='Date Fixed' info={status === 'fixed' ? `${date_updated.toDate().toDateString()}` : 'N/A'} />
+
+                    <div className='my-12 grid gap-4 place-items-center' >
+                        <MainButton onClick={toggleConfirmationOverlay} text='UPDATE' />
+                        <SecondaryButton text='CANCEL' onClick={() => setShowModal(false)} />
+                    </div>
                 </div>
             </div>
+
             {/* Update Confirmation Overlay */}
             {confirmationOverlay ? <ConfirmationOverlay toggleConfirmationOverlay={toggleConfirmationOverlay} dropdownValue={dropdownValue} initStatus={status} updateData={updateData} /> : null}
         </>

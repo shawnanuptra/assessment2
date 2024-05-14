@@ -47,7 +47,7 @@ export default function Question1() {
         <>
             <div className='absolute z-0 w-screen h-screen bg-bubbles bg-cover'>
             </div>
-            <div className='w-screen h-screen p-12 flex flex-col z-10'>
+            <div className='w-screen h-screen p-12 flex flex-col z-10 max-w-lg my-0 mx-auto'>
                 <QuestionsBar question={1} />
                 <div className='flex rounded-2xl flex-grow relative p-4 shadow-lg  bg-white bg-opacity-60 backdrop-blur-3xl'>
                     <form className='w-full flex flex-col' onSubmit={console.log('test')}>

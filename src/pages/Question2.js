@@ -124,9 +124,9 @@ export default function Question2() {
         <>
             <div className='absolute z-0 w-screen h-screen bg-bubbles bg-cover'>
             </div>
-            <div className='w-screen h-screen p-12 flex flex-col z-10'>
+            <div className='w-screen h-screen p-12 flex flex-col z-10 max-w-lg my-0 mx-auto'>
                 <QuestionsBar question={2} />
-                <div className='flex rounded-2xl flex-grow relative p-4 shadow-lg  bg-white bg-opacity-60 backdrop-blur-3xl'>
+                <div className='flex rounded-2xl flex-grow relative p-4 shadow-lg  bg-white bg-opacity-60 backdrop-blur-3xl justify-center'>
                     <form className='flex flex-col justify-between'>
                         <div className='mb-9'>
                             <h2 className='text-2xl font-bold'>Where has the damage occured?</h2>

@@ -42,7 +42,7 @@ export default function CouncilHome() {
     }, []);
 
     return (
-        <div className='w-screen h-screen px-12 flex flex-col z-10 py-4 no-scrollbar'>
+        <div className='w-screen h-screen px-12 flex flex-col z-10 py-4 no-scrollbar max-w-xl my-0 mx-auto'>
             <div className='flex flex-grow flex-col justify-between h-full no-scrollbar'>
                 {/* Title */}
                 <CouncilTitle text='New' />

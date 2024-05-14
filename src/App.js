@@ -15,7 +15,7 @@ function App(props) {
 
   return (
     <div className="flex justify-center flex-col items-center h-screen p-12 text-center">
-      <img src={Hero} className="w-screen" />
+      <img src={Hero} className="w-screen max-w-lg" />
       <h1 className='text-3xl font-bold mt-12'>Reporting a bridle path damage?</h1>
       <p className='mt-2 mb-12'>Click next to continue</p>
       <Link to={'/q1'}>

@@ -41,7 +41,7 @@ export default function Archive() {
     }, []);
 
     return (
-        <div className='w-screen h-screen px-12 flex flex-col z-10 py-4'>
+        <div className='w-screen h-screen px-12 flex flex-col z-10 py-4 max-w-xl my-0 mx-auto'>
             <div className='flex flex-grow flex-col justify-between h-full'>
                 {/* Title */}
                 <CouncilTitle text='Archive' />
